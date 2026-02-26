@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<!--
+  TEMPLATE: Meeting Summary Email
+  USAGE: Replace all {{PLACEHOLDER}} values with actual content.
+
+  PLACEHOLDERS:
+    {{TITLE}}             - Email/document title (e.g. "פיבי + eOS — בקשת הלוואה וניהולה")
+    {{STEP_TITLE}}        - Title of a flow step (e.g. "1. כניסה לאפליקציה")
+    {{STEP_BODY}}         - Descriptive body text for the step
+    {{QUESTION_PARTY}}    - The party the question is directed to (לפיבי / ל-eOS / לפיבי ול-eOS)
+    {{QUESTION_TEXT}}     - The open question text
+
+  QUESTION TYPES (CSS classes):
+    .open-question        - Blue  → question directed to external partner (e.g. לפיבי)
+    .open-question.eos    - Green → question directed internally (e.g. ל-eOS)
+    .open-question.both   - Orange → question for both parties
+
+  To add more steps: duplicate a <div class="step"> block.
+  To add more questions per step: duplicate an .open-question div within the step.
+  Steps without open questions: omit the .open-question div entirely.
+-->
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      color: #1a1a1a;
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 24px;
+      direction: rtl;
+    }
+
+    h1 {
+      font-size: 20px;
+      color: #1a1a1a;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 10px;
+      margin-bottom: 24px;
+    }
+
+    .step {
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .step:last-child {
+      border-bottom: none;
+    }
+
+    .step-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+
+    .step-body {
+      color: #444444;
+      margin-bottom: 10px;
+    }
+
+    /* Blue — external partner question */
+    .open-question {
+      background-color: #f5f7ff;
+      border-right: 4px solid #4a6cf7;
+      padding: 8px 12px;
+      margin-top: 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    /* Green — internal (eOS) question */
+    .open-question.eos {
+      background-color: #f0faf4;
+      border-right-color: #34a853;
+    }
+
+    /* Orange — shared question for both parties */
+    .open-question.both {
+      background-color: #fff8f0;
+      border-right-color: #f4a622;
+    }
+
+    .tag {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>{{TITLE}}</h1>
+
+  <!-- ===== STEP (no open questions) ===== -->
+  <div class="step">
+    <div class="step-title">{{STEP_TITLE}}</div>
+    <div class="step-body">
+      {{STEP_BODY}}
+    </div>
+  </div>
+
+  <!-- ===== STEP (with one external partner question) ===== -->
+  <div class="step">
+    <div class="step-title">{{STEP_TITLE}}</div>
+    <div class="step-body">
+      {{STEP_BODY}}
+    </div>
+    <div class="open-question">
+      <span class="tag">שאלה פתוחה {{QUESTION_PARTY}}:</span> {{QUESTION_TEXT}}
+    </div>
+  </div>
+
+  <!-- ===== STEP (with one internal eOS question) ===== -->
+  <div class="step">
+    <div class="step-title">{{STEP_TITLE}}</div>
+    <div class="step-body">
+      {{STEP_BODY}}
+    </div>
+    <div class="open-question eos">
+      <span class="tag">שאלה פתוחה {{QUESTION_PARTY}}:</span> {{QUESTION_TEXT}}
+    </div>
+  </div>
+
+  <!-- ===== STEP (with multiple questions) ===== -->
+  <div class="step">
+    <div class="step-title">{{STEP_TITLE}}</div>
+    <div class="step-body">
+      {{STEP_BODY}}
+    </div>
+    <div class="open-question">
+      <span class="tag">שאלה פתוחה {{QUESTION_PARTY}}:</span> {{QUESTION_TEXT}}
+    </div>
+    <div class="open-question" style="margin-top: 6px;">
+      <span class="tag">שאלה פתוחה {{QUESTION_PARTY}}:</span> {{QUESTION_TEXT}}
+    </div>
+  </div>
+
+  <!-- ===== STEP (with shared question for both parties) ===== -->
+  <div class="step">
+    <div class="step-title">{{STEP_TITLE}}</div>
+    <div class="step-body">
+      {{STEP_BODY}}
+    </div>
+    <div class="open-question both">
+      <span class="tag">שאלה פתוחה {{QUESTION_PARTY}}:</span> {{QUESTION_TEXT}}
+    </div>
+  </div>
+
+</body>
+</html>
